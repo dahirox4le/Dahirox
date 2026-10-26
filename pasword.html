@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> salasana valikointisivu</h1>
+    <a href="index.html">salasana valikointisivu</a>
+    <br>
+    <br>
+    <input type="password" spellcheck="false" id="password">
+    <button id="vaihto">show password</button>
+    <ul>
+        <li id="li-pituus">salasana pituus 5-10</li>
+        <li id="iso-kirjain">vähintään yksi iso kirjain</li>
+        <li id="yksi-numero">vähintään yksi numero</li>
+        <li id="erikoismerkki"> vähintään yksi erikoismerki (@#€.) </li>
+    </ul>
+    <script>
+
+        const input = document.getElementById("password");
+        const button = document.getElementById("vaihto");
+        const lipituus = document.getElementById("li-pituus")
+        const isokirjain = document.getElementById("iso-kirjain")
+        const numero = document.getElementById ("yksi-numero")  
+        const erikoismerkki = document.getElementById ("erikoismerkki");      
+        //console.log(isokirjain)
+        //console.log (yksi-numero)
+
+
+        function onButtonclick() {
+            if (input.type === "password") {
+                input.type = "text";
+                button.innerText = "hide password";
+            }
+            else {
+                input.type = "password"
+                button.innerText = "showpassword";
+            }
+        }
+        function onInput () {
+            /** @type {string} */
+            const password = input.value;
+            
+            
+            
+            if (password.length < 5 || password.length >10) {
+                lipituus.style.color = "red";
+                
+            } else {
+                lipituus.style.color = "green";
+            }
+
+            if (/[A-Z]/.test(password) ){
+                isokirjain.style.color = "green";
+            
+            } else { 
+                isokirjain.style.color = "red";
+            }    
+            if (/[0-9]/.test(password)) {
+                numero.style.color = "green";
+            
+            } else {
+                numero.style.color = "red";
+            }
+            if (/[@#€.]/.test(password)){
+                erikoismerkki.style.color = "green";
+            } else {
+                erikoismerkki.style.color = "red";
+            }
+        }
+        function onInput2() {
+            /** @type {string} */
+            const password = input.value;
+                lipituus.style.color = "red";
+            if (5 <= password.length && password.length <=10) {
+                lipituus.style.color = "green";
+            }
+
+            //iso kirjain
+                isokirjain.style.color = "red";
+            for (let i = 0; i < password.length; i++){
+                const code = password.charCodeAt (i);
+                if (65 <= code && code <= 90) {
+                    isokirjain.style.color = "green";
+                }
+            }
+          
+            }
+            
+        
+
+
+
+        button.onclick = onButtonclick;
+        input.oninput = onInput2
+       onInput();
+    </script>
+    
+
+
+
+</body>
+</html>
